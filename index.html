@@ -1,23 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Team Lions Enrollment</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lions Enrollment</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  color: white;
+}
+
+/* Container */
+.container {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 15px;
+}
+
+/* Title */
+.title {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+/* Question Box */
+.box {
+  background: white;
+  color: black;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+}
+
+/* Question */
+.question {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* Input */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background: orange;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+</style>
+
 </head>
 
-<body style="background:#111;color:white;text-align:center;font-family:sans-serif">
+<body>
 
-<h2>🦁 Team Lions Enrollment</h2>
+<div class="container">
 
-<input id="username" placeholder="Your Username"><br><br>
+<div class="title">🦁 Team Lions Enrollment</div>
 
-<input id="ids" placeholder="How many IDs do you have"><br><br>
+<!-- Q1 -->
+<div class="box">
+  <div class="question">1. YOUR USERNAME</div>
+  Answer:
+  <input id="username" placeholder="Enter your username">
+</div>
 
-<textarea id="team" placeholder="Which team were you in before? (optional)"></textarea><br><br>
+<!-- Q2 -->
+<div class="box">
+  <div class="question">2. HOW MANY IDS DO YOU HAVE?</div>
+  Answer:
+  <input id="ids" type="number" placeholder="Enter number">
+</div>
 
-<input id="userid" placeholder="Your Telegram ID (important)"><br><br>
+<!-- Q3 -->
+<div class="box">
+  <div class="question">3. WHICH TEAM WERE YOU IN BEFORE? (OPTIONAL)</div>
+  Answer:
+  <textarea id="team" placeholder="Type here or leave blank"></textarea>
+</div>
 
-<button onclick="submitForm()">Submit</button>
+<!-- Q4 -->
+<div class="box">
+  <div class="question">4. YOUR TELEGRAM ID</div>
+  Answer:
+  <input id="userid" placeholder="Enter your Telegram ID">
+</div>
+
+<button onclick="submitForm()">🚀 Submit Enrollment</button>
+
+</div>
 
 <script>
 
@@ -41,20 +125,20 @@ function submitForm(){
     "7580298442"
   ];
 
-  let text = `🦁 NEW ENROLLMENT
+  let msg = `🦁 NEW ENROLLMENT
 
 👤 Username: ${username}
 🆔 UserID: ${userid}
 📊 IDs: ${ids}
 🏆 Previous Team: ${team || "None"}`;
 
-  // 🔥 SEND TO ADMINS
+  // Send to admins
   ADMINS.forEach(id => {
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${id}&text=${encodeURIComponent(text)}`);
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${id}&text=${encodeURIComponent(msg)}`);
   });
 
-  // 🔥 SEND TO USER
-  fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${userid}&text=${encodeURIComponent("🎉 CONGRATULATIONS YOU HAVE ENROLLED FOR TEAM LIONS NOW WAIT TILL ADMINS APPROVE YOU")}`);
+  // Send to user
+  fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${userid}&text=${encodeURIComponent("🎉 CONGRATULATIONS! You have enrolled in Team Lions. Wait for admin approval.")}`);
 
   alert("Enrollment Submitted ✅");
 }
@@ -62,4 +146,4 @@ function submitForm(){
 </script>
 
 </body>
-  </html>
+</html>
